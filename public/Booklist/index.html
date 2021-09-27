@@ -1,0 +1,83 @@
+<html>
+<head>
+  <title>Список книг</title>
+  <link rel="stylesheet" href="/Booklist/css/css.css" type="text/css">
+  <meta name="" content="" charset="utf-8">
+  <script src="/Booklist/js-system/JQuery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/Booklist/base-script.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/Booklist/modal.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+<body>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <p>Some text in the Modal..</p>
+      <div class="rower">
+        <div class="name">Название:</div>
+        <textarea class="text" id="book-name-text"></textarea>
+      </div>
+
+      <button id="create-book">Добавить книгу</button>
+    </div>
+  </div>
+
+
+  Начинаем
+  <button class = "CALLBACK">Вызов</button>
+  <div class="bodyD">
+  <div class="righter-container">
+    <div class="formread">
+      <!-- Trigger/Open The Modal -->
+      <button id = "modal-create-book">Добавить книгу</button>
+      <div class="row-book">
+        <div class="inform-book">
+          <div class="rower">
+            <div class="book-title name">Название:</div>
+            <textarea class="book-title-text text"></textarea>
+          </div>
+          <div class="rower">
+            <div class="author-book name">Автор:</div>
+            <textarea class="author-book-text text"></textarea>
+          </div>
+          <div class="rower">
+            <div class="type-book name">Тиа:</div>
+            <textarea class="type-book-text text"></textarea>
+          </div>
+        </div>
+        <div class="panel"><button>Изменить</button><button class = "create-new-book">Добавить</button></div>
+      </div>
+      <div class="row-author">
+        <div class="inform-author">
+          <div class="rower">
+          <div class="performance-author name">Представление:</div>
+          <textarea class="performance-author-text text"></textarea>
+          </div>
+          <div class="rower">
+          <div class="author-name name">Имя:</div>
+          <textarea class="name-author-text text"></textarea>
+          </div>
+          <div class="rower">
+          <div class="author-last-name name">Фамилия:</div>
+          <textarea class="last-name-author-text text"></textarea>
+          </div>
+        </div>
+        <div class="panel"><button>Изменить</button></div>
+      </div>
+
+    </div>
+  </div>
+  <div class="ListBook">
+    Это список книг
+    <div class="BookHeader">
+      <div class="BookName">Название книги</div>
+      <div class="BookAuthor">Автор Книги</div>
+    </div>
+  </div>
+  </div>
+</body>
+</html>
