@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "this test project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "exceljs": "^4.3.0",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongodb": "^4.1.2",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "ws": "^8.2.2"
+  },
+  "author": "VEK",
+  "license": "ISC",
+  "optionalDependencies": {
+    "utf-8-validate": "^5.0.5"
+  }
+}
