@@ -80,12 +80,28 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
  console.log('Запуск сервера успешен. Порт ' + port);
 });
-//test();
+//uploadDB();
+test();
 async function test(){
   //let testAuthor = new Author ({first_name: 'Дед', last_name:'Пихто'});
   //let exception = ['Совместное', 'Без автора', undefined];
-  console.log((await(await Book.find())[2].getAuthor()));
+  console.log(await (await Book.find())[1].getAuthor());
 
+}
+
+async function uploadDB(){
+  console.log("Начинаем");
+  let db = await Book.find();
+  for (let i = 0; i < db.length; i++) {
+    let book = db[i];
+    let id = book.author.id;
+    if (id.length == 0){
+      book.author.check = false;
+      book.save();
+      console.log("успешно поменяли");
+    }
+  }
+  console.log("Типа кончили");
 }
 
 

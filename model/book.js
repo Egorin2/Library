@@ -7,14 +7,16 @@ const BookSchema = mongoose.Schema({
 	bookName: {
 		type: String
 	},
-	author: {id:[]}
+	author: {
+		check: Boolean, // false - без авторов
+		id:[]}
 });
 
 BookSchema.methods.getAuthor = async function(){
-	let array = this.author.id;
-	if (array.length==0){
-		return 'Без автора';
+	if (!this.author.check) {
+		return this.author;
 	}
+	let array = this.author.id;
 	//console.log(array);
 	let authors = [];
 	for (let i = 0; i < array.length; i++){
@@ -23,7 +25,11 @@ BookSchema.methods.getAuthor = async function(){
 		//console.log(item);
 		authors.push(item);
 	}
-	return authors;
+	let obj = {
+		check: true,
+		author: authors
+	}
+	return obj;
 };
 BookSchema.methods.getBook = async function(){
 	let bookPublick = {

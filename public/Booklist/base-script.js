@@ -31,7 +31,7 @@ window.onload = function (){
       default:
 
     }
-    
+
 });
 
 
@@ -148,12 +148,10 @@ function getFullName(author){
 	return name;
 }
 function getAuthorsName(item){
-  if (item == "Без автора"){
-    return item;
+  if (!(item.check)){
+    return "Без автора";
   }
-  if (typeof item == 'string'){
-    return item;
-  }
+  item = item.author;
   let name = getFullName(item[0]);
   for (let i = 1; i<item.length; i++){
     name = name + ', ' + getFullName(item[i]);
