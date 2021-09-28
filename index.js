@@ -83,9 +83,20 @@ app.listen(port, () => {
 //uploadDB();
 test();
 async function test(){
-  //let testAuthor = new Author ({first_name: 'Дед', last_name:'Пихто'});
-  //let exception = ['Совместное', 'Без автора', undefined];
-  console.log(await (await Book.find())[1].getAuthor());
+  let author = {
+    check: false
+  }
+  let test = {
+    bookName: "Капитал. Критика политической экономии. 1 том",
+    //author: author
+  };
+  let bool = await Book.findOne(test);
+  if (bool){
+    console.log("true");
+  } else {
+    console.log("false");
+  }
+  console.log(bool.id);
 
 }
 

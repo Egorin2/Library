@@ -1,11 +1,15 @@
+<!Doctype html>
 <html>
 <head>
   <title>Список книг</title>
   <link rel="stylesheet" href="/Booklist/css/css.css" type="text/css">
   <meta name="" content="" charset="utf-8">
   <script src="/Booklist/js-system/JQuery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/Booklist/ws.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/Booklist/common.js" type="text/javascript" charset="utf-8"></script>
   <script src="/Booklist/base-script.js" type="text/javascript" charset="utf-8"></script>
   <script src="/Booklist/modal.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
 
 
 </head>
@@ -20,6 +24,10 @@
       <div class="rower">
         <div class="name">Название:</div>
         <textarea class="text" id="book-name-text"></textarea>
+      </div>
+      <div class="rower">
+        <div class="name">Автор:</div>
+        <textarea class="text" id="author-nickname-text"></textarea>
       </div>
 
       <button id="create-book">Добавить книгу</button>
@@ -66,18 +74,29 @@
           <textarea class="last-name-author-text text"></textarea>
           </div>
         </div>
-        <div class="panel"><button>Изменить</button></div>
+        <div class="panel"><button id="editAuthor">Изменить</button></div>
       </div>
 
     </div>
   </div>
-  <div class="ListBook">
+  <div class="work-space">
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'ListBook')">Книги</button>
+    <button class="tablinks" onclick="openCity(event, 'AuthorList')">Авторы</button>
+  </div>
+  <div id="ListBook" class="tabcontent">
     Это список книг
     <div class="BookHeader">
       <div class="BookName">Название книги</div>
       <div class="BookAuthor">Автор Книги</div>
     </div>
   </div>
+  <div id="AuthorList" class="tabcontent">
+    <p>Текст заглушка вместо будущей таблицы</p>
+
   </div>
+</div>
+</div>
+
 </body>
 </html>

@@ -26,6 +26,7 @@ wsClient.on('message', function(mess) {
     console.log('Запрос на создание новой книги');
       newBook(wsClient, message.value);
       break;
+    case "Edit-BookName": Book.editBookName(message.value); break;
     default:
 
   }
@@ -37,7 +38,7 @@ wsClient.on('close', function() {
 }
 async function newBook(wsClient, value){
   let newBook = value;
-  let book = new Book ({bookName: newBook.bookName});
+  let book = new Book (value);
   book.save();
   let bookPublick = await book.getBook();
   let send = {
@@ -49,21 +50,18 @@ async function newBook(wsClient, value){
   wsClient.send(sendJSON);
 }
 async function callDB(wsClient) {
-  let list = await Book.find();
-  let listDRAW = [];
-
-  for (let i = 0; i < list.length; i++){
-    let book = await list[i].getBook();
-    listDRAW.push(book);
-  }
   let bookBack = {
     action: 'BACK',
-    value: listDRAW
+    value: await Book.getDB()
   };
-  //console.log(bookBack);
-
   wsClient.send(JSON.stringify(bookBack));
 }
+/*async function editBookName(wsClient, value) {
+  let book = (await Book.find({_id: value.id}))[0];
+  console.log(book);
+  book.bookName = value.edit;
+  book.save();
+}*/
 
 async function excelWork () {
   console.log('Обрабатываем');
