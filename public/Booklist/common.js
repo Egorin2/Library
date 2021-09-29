@@ -9,6 +9,47 @@ function findId(id){
   }
   return -1;
 }
+function searchAuthor(text, name){
+  let arrayItem = [];
+  for (let i = 0; i < listAuthor.length; i++){
+    let author = listAuthor[i];
+    if(author[name] == "Не задано"){
+      continue;
+    }
+    let lastName = author[name];
+    if (lastName.length < text.length){
+      continue;
+    }
+    let take = lastName.slice(0, text.length);
+    if (take == text){
+      arrayItem.push(author);
+    }
+  }
+  return arrayItem;
+}
+function searchAuthor(text){
+  let arrayItem = [];
+  for (let i = 0; i < listAuthor.length; i++){
+    let author = listAuthor[i];
+    let properties = Author.getNameCode();
+    for (let j = 0; j < properties.length; j++){
+      let name = properties[j];
+      let value = author[name];
+      if (value == "Не задано" || value == undefined){
+        continue;
+      }
+      if (value.length < text.length){
+        continue;
+      }
+      let take = value.slice(0, text.length);
+      if (take == text){
+        arrayItem.push(author);
+        break;
+      }
+    }
+  }
+  return arrayItem;
+}
 
 
 
@@ -106,14 +147,68 @@ class Author {
   set first_name(value){
     this._first_name = value;
   }
+  get last_name(){
+    if (this._last_name == undefined){
+      return "Не задано";
+    } else {
+      return this._last_name;
+    }
+  }
+  set last_name(value){
+    this._last_name = value;
+  }
 
   get name() {
-    if (this.first_name == "Не задано" && this.last_name == undefined){
+    if (this.first_name == "Не задано" && this.last_name == "Не задано"){
       return this.nickname;
     }
     if (this.first_name == "Не задано"){
       return this.last_name;
     }
     return this.first_name + " " + this.last_name;
+  }
+  editNickname(text){}
+
+  editElem(name, text){
+    if (this[name] == text){
+      return false;
+    }
+    if (text == "" || text == " "){
+      return false;
+    }
+    this[name] = text;
+    //Далее отправляем изменение на сервер, чтобы зафиксировать
+    let value = {
+      id: this.id,
+      name: name,
+      edit: this[name]
+    };
+    messageServ("Edit-AuthorElem", value);
+
+  }
+
+  getValue(code){
+    switch (code) {
+      case "first_name":
+      if(this.first_name == "Не задано"){
+        return ""
+      }else {
+        return this.first_name;
+      }
+        break;
+      case "last_name":
+        if(this.last_name == "Не задано"){
+          return ""
+        }else {
+          return this.last_name;
+        }
+          break;
+      default:
+
+    }
+  }
+  getNameCode(){
+    let array = ["last_name", "first_name", "nickname"];
+    return array;
   }
 }

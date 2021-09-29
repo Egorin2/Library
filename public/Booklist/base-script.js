@@ -64,21 +64,9 @@ function takeTable(){
 
     let tr = $('<tr>').addClass("item");
     let nub = $("<td>").text(i+1);
-    let name = $('<td>').text(author.name);
-    let firstName = $('<td>').append($("<div>").text(author.first_name));
-    firstName.append($("<input>", {type:"text"}).css("display", "none").bind("input", function(){
-      firstName.children("div").text($(this).val());
-    }).keypress(function(e){
-      if(e.which == 13){
-        firstName.children("input").hide();
-        firstName.children("div").show();
-      }
-    }));
-    firstName.dblclick(function(){
-      $(this).children("div").hide();
-      $(this).children("input").show().val(author.first_name).focus();
-    });
-    let lastName = $('<td>').text(author.last_name);
+    let name = $('<td>', {class: "td-name"}).text(author.name);
+    let firstName = tdName("first_name", author);
+    let lastName = tdName("last_name", author);
     tr.append(nub).append(name).append(firstName).append(lastName);
     table.append(tr);
   }
@@ -178,4 +166,30 @@ function modalNewBook(){
 function CountBook(){
   let count = $('.BookItem').length;
   return count;
+}
+
+
+function tdName(name, author){ //Выдать ячеку таблицы. Указать вызываемое поле и послылаемый объект
+  let td = $('<td>');
+  let div = $("<div>").text(author[name]);
+  td.append(div);
+  let input = $('<input>', {type:"text"}).css("display", "none")
+   .keypress(function(e){
+    if(e.which == 13){
+      author.editElem(name, input.hide().val());
+      div.show().text(author[name]);
+      td.siblings(".td-name").text(author.name);
+    }
+  });
+  td.append(input);
+  td.dblclick(function(){
+    div.hide();
+    input.show().val(author.getValue(name)).focus();
+  });
+  return td;
+}
+
+function onSearch(){
+
+  let search = $("<datalist>",{id:"search"});
 }

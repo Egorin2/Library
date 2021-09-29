@@ -4,6 +4,7 @@ const fs = require('fs');
 const ExcelJS = require('exceljs');
 const mongoose = require('mongoose');
 const Book = require('./model/book');
+const Author = require('./model/author');
 
 wsServer.on('connection', onConnect);
 
@@ -27,6 +28,7 @@ wsClient.on('message', function(mess) {
       newBook(wsClient, message.value);
       break;
     case "Edit-BookName": Book.editBookName(message.value); break;
+    case "Edit-AuthorElem": Author.editAuthorElem(message.value); break;
     default:
 
   }

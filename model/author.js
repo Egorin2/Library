@@ -27,3 +27,22 @@ module.exports.getAuthorForID = async function(id){
 	};
 	return authorPublick;
 }
+module.exports.editAuthorFirstName = async function(item){
+	console.log("Зашли");
+	let author = await Author.findOne({_id: item.id});
+	console.log("Достали");
+	author.first_name = item.edit;
+	console.log("Изменили на " + item.edit);
+	author.save();
+
+}
+module.exports.editAuthorLastName = async function(item){
+	let author = await Author.findOne({_id: item.id});
+	author.last_name = item.edit;
+	author.save();
+}
+module.exports.editAuthorElem = async function(item){
+	let author = await Author.findOne({_id:item.id});
+	author[item.name] = item.edit;
+	author.save();
+}
