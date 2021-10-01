@@ -86,7 +86,15 @@ function createRow (book){
 
 
   let name = bookNameDiv(book);
-  let author = $('<div>', {class: 'BookAuthor', text: book.Author});
+  let authorEdit = $('<div>', {class: 'edit-author'}).css("display","none").append($("<span>", {text: book.Author}));
+  let authorVisually = $('<div>', {class: 'author-text-in-ListBook', text: book.Author});
+  let author = $('<div>', {class: 'BookAuthor'});
+  author.append(authorVisually);
+  author.append(authorEdit);
+  author.dblclick(function(){
+    authorVisually.css("display","none");
+    authorEdit.show().addClass("active-Edit-place");
+  })
   div.append(name).append(author);
   $('#ListBook').append(div);
   return div;
